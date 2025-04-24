@@ -13,3 +13,29 @@ app.post('/tacos',(req,res)=>{
 app.listen(3000,()=>{
     console.log('Server is running on port 3000');
 });
+
+
+
+
+
+
+
+
+
+
+// usename 
+// text 
+// Get /allcoments
+// Get /all 
+// GET /ShowmeallcommentsNow
+
+// post /addcomment
+// post /makecomments
+
+// http  root        explain
+// GET /comments -> all comments
+// post /comments -> add a comment
+// GET /comments/:id -> get a specific comment
+// PUT or patch /comments/:id -> update a specific comment
+// DELETE /comments/:id -> delete a specific comment
+
