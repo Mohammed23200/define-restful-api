@@ -26,8 +26,18 @@ const comments = [
     }
 ];
 
+
 app.get('/comments', (req, res) => {
     res.render('comments/index', { comments });
+});
+
+app.get('/comments/new', (req, res) => {
+    res.render('comments/new');
+});
+app.post('/comments', (req, res) => {
+    const { username, comment } = req.body; // Renamed 'comments' to 'comment'
+    comments.push({ username, comments: comment }); // Use 'comments' array and 'comment' property
+    res.send("Thank you for your comment!");
 });
 
 app.get('/tacos', (req, res) => {
