@@ -12,6 +12,8 @@
     <h2><%= comment.comments%> - <%= comment.username %></h2>
     <a href="http://localhost:3000/comments">Back to index</a>
     <a href="http://localhost:3000/comments/<%= comment.id %>/edit">Edit</a>
-
+    <form method="post" action="/comments/<%comment.id%>?_method=DELETE">
+        <button>Delete</button>
+    </form>
 </body>
 </html>
