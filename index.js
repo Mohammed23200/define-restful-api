@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const {v4:uuid}=require('uuid');
+const { v4: uuid } = require('uuid');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set("views", path.join(__dirname, "views"));
@@ -45,10 +45,18 @@ app.post('/comments', (req, res) => {
     res.redirect('/comments');
 });
 
+app.patch('/comments/:id',(req, res)=>{
+    const {id} =req.params;
+    const newCommentText=req.body.comment;
+    const foundComment =comments.find(c =>c.id === id);
+    foundComment.comments = newCommentText;
+})
+
 app.get("/comments/:id",(req, res)=>{
     const {id} =req.params;
     const comment =comments.find(c =>c.id === id)
-    res.render('comments/show',{comment})})
+    res.render('comments/show',{comment})
+})
 
 app.get('/tacos', (req, res) => {
     res.send("get /tacos");
