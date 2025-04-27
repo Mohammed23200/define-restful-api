@@ -36,8 +36,8 @@ app.get('/comments/new', (req, res) => {
 });
 app.post('/comments', (req, res) => {
     const { username, comment } = req.body; // Renamed 'comments' to 'comment'
-    comments.push({ username, comments: comment }); // Use 'comments' array and 'comment' property
-    res.send("Thank you for your comment!");
+    comments.push({ username,comments:comment }); // Use 'comments' array and 'comment' property
+    res.redirect('/comments');
 });
 
 app.get('/tacos', (req, res) => {
