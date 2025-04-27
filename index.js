@@ -1,30 +1,31 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-
+const {v4:uuid}=require('uuid');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set("views", path.join(__dirname, "views"));
 app.set('view engine', 'ejs');
 
+
 const comments = [
     {
-        id:1,
+        id:uuid(),
         username: 'John',
         comments: 'lol that is so funny!',
     },
     {
-        id:2,
+        id:uuid(),
         username: 'Jane',
         comments: 'I know right?',
     },
     {
-        id:3,
+        id:uuid(),
         username: 'Jim',
         comments: 'I am not sure about that',
     },
     {
-        id:4,
+        id:uuid(),
         username: 'Jack',
         comments: 'I think it is true',
     }
@@ -40,13 +41,13 @@ app.get('/comments/new', (req, res) => {
 });
 app.post('/comments', (req, res) => {
     const { username, comment } = req.body; // Renamed 'comments' to 'comment'
-    comments.push({ username,comments:comment }); // Use 'comments' array and 'comment' property
+    comments.push({ username,comments:comment,id:uuid() }); // Use 'comments' array and 'comment' property
     res.redirect('/comments');
 });
 
 app.get("/comments/:id",(req, res)=>{
     const {id} =req.params;
-    const comment =comments.find(c =>c.id === parseInt(id))
+    const comment =comments.find(c =>c.id === id)
     res.render('comments/show',{comment})})
 
 app.get('/tacos', (req, res) => {
