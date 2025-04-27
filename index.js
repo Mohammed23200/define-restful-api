@@ -52,6 +52,15 @@ app.patch('/comments/:id',(req, res)=>{
     foundComment.comments = newCommentText;
 })
 
+app.get('/comments/:id/edit', (req, res) => {
+    const { id } = req.params; // Extracts `id` from URL parameters
+    const comment = comments.find(c => c.id === id); // Then use `id` to find the comment
+    if (!comment) {
+        return res.status(404).send('Comment not found');
+    }
+    res.render('comments/edit', { comment });
+});
+
 app.get("/comments/:id",(req, res)=>{
     const {id} =req.params;
     const comment =comments.find(c =>c.id === id)
